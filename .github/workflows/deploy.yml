@@ -55,7 +55,3 @@ jobs:
         with:
           app-name: securefuncprod-func
           package: src/function_app
-
-      - name: Create Resource Group
-        run: az group create --name rg-securefunc-dev --location centralus
-
