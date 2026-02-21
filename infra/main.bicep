@@ -34,6 +34,8 @@ module function './function.bicep' = {
     privateEndpointSubnetId: network.outputs.privateEndpointSubnetId
     functionAppId: storage.outputs.functionAppId
     functionAppPrincipalId: storage.outputs.functionAppPrincipalId
+    storageAccountId: storage.outputs.storageAccountId
+    storageAccountName: storage.outputs.storageAccountName
     keyVaultId: keyvault.outputs.keyVaultId
   }
 }
