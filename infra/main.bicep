@@ -12,7 +12,6 @@ module network './network.bicep' = {
 module storage './storage.bicep' = {
   name: 'storageDeployment'
   params: {
-    subnetId: network.outputs.functionSubnetId
     subnetId: network.outputs.privateEndpointSubnetId
     location: location
     projectName: projectName
@@ -32,9 +31,10 @@ module function './function.bicep' = {
   params: {
     location: location
     projectName: projectName
-    keyVaultId: keyvault.outputs.keyVaultId
-    subnetId: network.outputs.functionSubnetId
     privateEndpointSubnetId: network.outputs.privateEndpointSubnetId
+    functionAppId: storage.outputs.functionAppId
+    functionAppPrincipalId: storage.outputs.functionAppPrincipalId
+    keyVaultId: keyvault.outputs.keyVaultId
   }
 }
 
