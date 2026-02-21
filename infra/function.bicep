@@ -2,6 +2,7 @@ param privateEndpointSubnetId string
 param projectName string
 param location string
 param functionAppId string
+param functionAppPrincipalId string
 
 resource functionPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-04-01' = {
   name: '${projectName}-func-pe'
@@ -23,3 +24,7 @@ resource functionPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-04-01'
     ]
   }
 }
+
+// ... (resource definitions)
+
+output functionPrincipalId string = functionAppPrincipalId

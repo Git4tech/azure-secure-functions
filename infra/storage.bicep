@@ -34,3 +34,8 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2023-04-01' = {
     ]
   }
 }
+
+// ... (resource definitions)
+
+output storageAccountName string = storage.name
+output storageAccountId string = storage.id

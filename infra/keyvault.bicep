@@ -23,3 +23,7 @@ resource kvPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-04-01' = {
     ]
   }
 }
+
+// ... (resource definitions)
+
+output privateEndpointId string = kvPrivateEndpoint.id
