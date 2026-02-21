@@ -24,7 +24,6 @@ module keyvault './keyvault.bicep' = {
     location: location
     projectName: projectName
     subnetId: network.outputs.privateEndpointSubnetId
-    kvResourceId: 'your-key-vault-resource-id'
   }
 }
 
@@ -33,14 +32,10 @@ module function './function.bicep' = {
   params: {
     location: location
     projectName: projectName
+    functionSubnetId: network.outputs.functionSubnetId
     storageAccountName: storage.outputs.storageAccountName
   }
 }
-module rbac './rbac.bicep' = {
-  name: 'rbacDeployment'
-  params: {
-    functionPrincipalId: function.outputs.functionPrincipalId
-    keyVaultId: keyvault.outputs.keyVaultId
-    storageAccountId: storage.outputs.storageAccountId
-  }
-}
+
+
+output keyVaultId string = keyvault.outputs.keyVaultId

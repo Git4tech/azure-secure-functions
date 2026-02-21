@@ -1,29 +1,20 @@
-param kvResourceId string
-param projectName string
 param location string
+param projectName string
 param subnetId string
 
-resource kvPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-04-01' = {
-  name: '${projectName}-kv-pe'
+resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
+  name: '${projectName}-kv'
   location: location
   properties: {
-    subnet: {
-      id: subnetId
+    tenantId: subscription().tenantId
+    sku: {
+      name: 'standard'
+      family: 'A'
     }
-    privateLinkServiceConnections: [
-      {
-        name: 'kvConnection'
-        properties: {
-          privateLinkServiceId: kvResourceId
-          groupIds: [
-            'vault'
-          ]
-        }
-      }
-    ]
+    enableRbacAuthorization: true
+    publicNetworkAccess: 'Disabled'
   }
 }
 
-// ... (resource definitions)
 
-output privateEndpointId string = kvPrivateEndpoint.id
+output keyVaultId string = keyVault.id
