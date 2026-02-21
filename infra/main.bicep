@@ -33,7 +33,6 @@ module function './function.bicep' = {
   params: {
     location: location
     projectName: projectName
-    functionSubnetId: network.outputs.functionSubnetId
     storageAccountName: storage.outputs.storageAccountName
   }
 }
